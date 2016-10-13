@@ -1,0 +1,65 @@
+/*jslint node: true */
+
+'use strict';
+
+var minimist = require('minimist');
+var Debug = require('debug');
+
+var argv = minimist(process.argv.slice(2), {
+  alias: {
+    h: 'help',
+    q: 'quiet',
+    v: 'verbose',
+  },
+  boolean: [
+    'help',
+    'quiet',
+    'version',
+    'verbose',
+  ],
+  default: {
+  },
+});
+
+if (argv.version) {
+  console.log(require('../package.json').version);
+  process.exit(0);
+}
+
+if (argv.help || argv._.length !== 2) {
+  console.log(function() {
+  /*
+  pm-node - Cluster node process manager
+
+  Usage:
+    pm-node [OPTIONS] [HOST] [PORT]
+
+  Options:
+    -q, --quiet                only show error output
+        --version              print the current version
+    -v, --verbose              be verbose
+
+  Please report bugs!  https://github.com/unsecured/pm-node/issues
+
+  */
+  }.toString().split(/\n/).slice(2, -2).join('\n'));
+  process.exit(0);
+}
+
+var qlog = function(msg) {
+  if (!argv.quiet) {
+    console.log(msg);
+  }
+};
+
+var PMNode = require('..');
+var node = new PMNode({
+  serverHost: argv._[0],
+  serverPort: parseInt(argv._[1]),
+});
+
+node.connect().then(function() {
+  qlog('connected to server');
+}).fail(function(err) {
+  qlog('failed to connected to server: ' + err.message);
+});

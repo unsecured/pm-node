@@ -1,0 +1,35 @@
+{
+  "name": "pm-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "pm-node": "./bin/cmd.js"
+  },
+  "scripts": {
+    "start": "node bin/cmd.js",
+    "debug": "DEBUG=* node bin/cmd.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unsecured/pm-node"
+  },
+  "bugs": {
+    "url": "https://github.com/unsecured/pm-node/issues"
+  },
+  "keywords": [
+    "cluster",
+    "copri"
+  ],
+  "author": "Martin Wind",
+  "license": "ISC",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "minimist": "^1.2.0",
+    "q": "^1.4.1",
+    "stream-extra": "mawi12345/stream-extra",
+    "underscore": "^1.8.3",
+    "usage": "^0.7.0"
+  }
+}

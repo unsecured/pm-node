@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "pm-node": "./bin/cmd.js"
+    "pm-node": "./bin/pm-node"
   },
   "scripts": {
-    "start": "node bin/cmd.js",
-    "debug": "DEBUG=* node bin/cmd.js",
+    "start": "node bin/pm-node",
+    "debug": "DEBUG=* node bin/pm-node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
